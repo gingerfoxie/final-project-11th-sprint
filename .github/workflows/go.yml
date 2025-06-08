@@ -39,5 +39,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
-      - uses: golangci/golangci-lint-action@v6.0.1 
+      - uses: golangci/golangci-lint-action@v6.0.1
+         skip-save-cache:true
       
