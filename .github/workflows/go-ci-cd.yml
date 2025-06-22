@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:  
       - name: Vet
-        run: cd ../ && cd ./ && go vet  
+        run: go vet ./... 
 
  deploy:
     name: Push to Docker Hub
