@@ -24,18 +24,25 @@ jobs:
  tests-race:
     needs: build
     runs-on: ubuntu-latest
-    steps:
+    steps:  
     - uses: actions/checkout@v4
     - uses: actions/setup-go@v4
-
     - name: Test
       run: go test -race -v ./...
- vet:
-    needs: [tests, tests-race] 
+ audit:
+    needs: [build] 
     runs-on: ubuntu-latest
-    steps:  
-      - name: Vet
-        run: go vet ./... 
+    steps:
+    - name: Verify dependencies
+      run: go mod verify 
+    - name: Build
+      run: go build -v ./...   
+    - name: Vet
+      run: go vet ./... 
+    - name: Install golint
+      run: go install golang.org/x/lint/golint@latest
+    - name: Run golint
+      run: golint ./...
 
  deploy:
     name: Push to Docker Hub
