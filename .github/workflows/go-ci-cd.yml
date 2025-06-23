@@ -1,7 +1,6 @@
 name: Go-testing
 on:
-  push: 
-    branches: ["develop", "main"]
+  push
 jobs:
  build:
     runs-on: ubuntu-latest
